@@ -51,14 +51,14 @@
         return originalFetch.apply(this, arguments);
       }
       if (input && typeof input === 'object' && 'url' in input) {
+        // Headers of an existing Request carry the "request" guard, so mutating
+        // them in place cannot remove forbidden names. Build a new Request with
+        // the sanitised headers instead.
         var request = new Request(input, init);
-        normalizeHeaders({ headers: request.headers }).forEach(function (value, name) {
-          request.headers.set(name, value);
-        });
-        FORBIDDEN_HEADERS.forEach(function (name) {
-          request.headers.delete(name);
-        });
-        return originalFetch.call(this, request);
+        return originalFetch.call(
+          this,
+          new Request(request, { headers: normalizeHeaders({ headers: request.headers }) })
+        );
       }
       var nextInit = Object.assign({}, init);
       nextInit.headers = normalizeHeaders(init);
@@ -67,32 +67,37 @@
   }
 
   var XhrProto = window.XMLHttpRequest && window.XMLHttpRequest.prototype;
-  if (XhrProto) {
+  if (XhrProto && typeof WeakMap === 'function') {
+    // Keep the shim state outside the XHR instances so that it cannot clash
+    // with existing or future properties of XMLHttpRequest.
+    var xhrState = new WeakMap();
     var originalOpen = XhrProto.open;
     var originalSetRequestHeader = XhrProto.setRequestHeader;
     var originalSend = XhrProto.send;
 
     XhrProto.open = function (method, url) {
-      this.__isProxyRequest = isProxyUrl(url);
-      this.__hasRequestedWith = false;
+      xhrState.set(this, { isProxyRequest: isProxyUrl(url), hasRequestedWith: false });
       return originalOpen.apply(this, arguments);
     };
 
-    XhrProto.setRequestHeader = function (name, value) {
-      if (this.__isProxyRequest) {
-        if (FORBIDDEN_HEADERS.indexOf(String(name).toLowerCase()) !== -1) {
+    XhrProto.setRequestHeader = function (name) {
+      var state = xhrState.get(this);
+      if (state && state.isProxyRequest) {
+        var lowerName = String(name).toLowerCase();
+        if (FORBIDDEN_HEADERS.indexOf(lowerName) !== -1) {
           return undefined;
         }
-        if (String(name).toLowerCase() === REQUESTED_WITH.toLowerCase()) {
-          this.__hasRequestedWith = true;
+        if (lowerName === REQUESTED_WITH.toLowerCase()) {
+          state.hasRequestedWith = true;
         }
       }
       return originalSetRequestHeader.apply(this, arguments);
     };
 
     XhrProto.send = function () {
-      if (this.__isProxyRequest && !this.__hasRequestedWith) {
-        this.__hasRequestedWith = true;
+      var state = xhrState.get(this);
+      if (state && state.isProxyRequest && !state.hasRequestedWith) {
+        state.hasRequestedWith = true;
         originalSetRequestHeader.call(this, REQUESTED_WITH, 'XMLHttpRequest');
       }
       return originalSend.apply(this, arguments);
