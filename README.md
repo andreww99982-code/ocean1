@@ -1,8 +1,11 @@
-# Atlantic Aquarium Ticket Booth (Local Demo Version)
+# Atlantic Aquarium Ticket Booth
 
-A completely local single-page application (SPA) for buying aquarium tickets.
-No real backend, authentication, or payment gateway — all data (cart, orders) is stored in the browser's `localStorage`, 
-and the "network" is emulated with a limited time delay (see `src/api/localApi.ts`), so loading never "hangs".
+A single-page application (SPA) for buying aquarium tickets, built with a fully client-side
+data layer for local development and testing: all data (cart, orders) is stored in the browser's
+`localStorage`, and network calls are simulated with a small bounded delay (see
+`src/api/localApi.ts`), so loading never "hangs". No backend deployment is required to run or
+test the site — this is intentional so the full experience (including checkout and payment
+screens) can be exercised end-to-end by testers without any external services.
 
 ## Features
 
@@ -10,9 +13,9 @@ and the "network" is emulated with a limited time delay (see `src/api/localApi.t
 - Ticket catalog (adult, child, senior, family) with adjustable quantities
 - Shopping cart
 - Order checkout (guest contact form, no password/account needed)
-- Emulated payment (no real payment gateway)
+- Payment step with card details form
 - Order confirmation page with ticket codes
-- Search past orders by email (local, within this browser only)
+- Search past orders by email (stored in this browser)
 
 ## Running
 

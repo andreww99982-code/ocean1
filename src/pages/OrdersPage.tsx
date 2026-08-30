@@ -24,7 +24,7 @@ export function OrdersPage() {
   return (
     <div className="container page">
       <h1>My Orders</h1>
-      <p>Enter the email from your order to see your tickets (data is stored only in this browser).</p>
+      <p>Enter the email address you used when booking to find your tickets.</p>
       <form className="form form--inline" onSubmit={onSubmit}>
         <label>
           Email

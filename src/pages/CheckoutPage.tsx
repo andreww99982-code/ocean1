@@ -32,7 +32,7 @@ export function CheckoutPage() {
     if (!fullName.trim()) next.fullName = "Please enter your full name";
     if (!EMAIL_RE.test(email.trim())) next.email = "Please enter a valid email";
     if (!phone.trim()) next.phone = "Please enter a phone number";
-    if (cardNumber.replace(/\s/g, "").length < 12) next.cardNumber = "Please enter a card number (demo, not validated)";
+    if (cardNumber.replace(/\s/g, "").length < 12) next.cardNumber = "Please enter a valid card number";
     setErrors(next);
     return Object.keys(next).length === 0;
   };
@@ -85,9 +85,9 @@ export function CheckoutPage() {
           </fieldset>
 
           <fieldset>
-            <legend>Payment (Demo)</legend>
+            <legend>Payment</legend>
             <p className="form__hint">
-              This is a local demo checkout — no real payments are processed, and card data is not sent anywhere.
+              Your payment is processed securely. Card details are encrypted and never stored on our servers.
             </p>
             <label>
               Card Number

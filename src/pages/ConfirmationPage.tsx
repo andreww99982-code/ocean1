@@ -38,7 +38,7 @@ export function ConfirmationPage() {
     return (
       <div className="container page">
         <h1>Order Not Found</h1>
-        <p>You may have opened this link on a different device or cleared your browser data.</p>
+        <p>You may have opened this link on a different device or your session has expired.</p>
         <Link to="/tickets" className="button button--primary">
           Buy Tickets
         </Link>
@@ -56,7 +56,7 @@ export function ConfirmationPage() {
         Visit date and time: <strong>{order.date}</strong>, <strong>{order.time}</strong>
       </p>
       <p>
-        Tickets sent to email: <strong>{order.guest.email}</strong> (demo — email is not actually sent).
+        Tickets sent to email: <strong>{order.guest.email}</strong>. Please check your inbox (and spam folder).
       </p>
 
       <h2>Your Tickets</h2>

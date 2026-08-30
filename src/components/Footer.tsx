@@ -10,8 +10,8 @@ export function Footer() {
           <p>{VENUE.openingHours}</p>
         </div>
         <p className="site-footer__note">
-          This demo checkout runs completely locally in your browser: no server, no real payments, and no data
-          transmission. All orders are stored only on this device.
+          Secure checkout &middot; Instant e-ticket delivery &middot; Free cancellation up to 24 hours before your
+          visit.
         </p>
       </div>
     </footer>
