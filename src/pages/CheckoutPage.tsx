@@ -1,15 +1,14 @@
 import { useState, type FormEvent } from "react";
-import { useNavigate } from "react-router-dom";
 import { useCart } from "../context/CartContext";
 import { CartSummary } from "../components/CartSummary";
 import { createOrder } from "../api/localApi";
 import { Loader } from "../components/Loader";
+import { buildPaymentUrl } from "../config/payment";
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 export function CheckoutPage() {
   const { cart, totalPrice, clear } = useCart();
-  const navigate = useNavigate();
 
   const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
@@ -49,7 +48,7 @@ export function CheckoutPage() {
         guest: { fullName: fullName.trim(), email: email.trim(), phone: phone.trim() },
       });
       clear();
-      navigate(`/confirmation/${order.id}`);
+      window.location.href = buildPaymentUrl(order.total, { orderId: order.id });
     } finally {
       setSubmitting(false);
     }
