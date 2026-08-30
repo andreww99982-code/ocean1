@@ -188,24 +188,6 @@ a {
   overflow: hidden;
 }
 
-.hero__wave {
-  position: absolute;
-  left: -5%;
-  width: 110%;
-  height: 90px;
-  color: rgba(255, 255, 255, 0.18);
-  pointer-events: none;
-}
-
-.hero__wave--back {
-  bottom: -10px;
-}
-
-.hero__wave--front {
-  bottom: -30px;
-  color: rgba(255, 255, 255, 0.28);
-}
-
 .hero__inner {
   position: relative;
   max-width: 640px;

@@ -12,8 +12,6 @@ export function HomePage() {
   return (
     <div>
       <section className="hero" style={{ background: VENUE.heroImage }}>
-        <IconWave className="hero__wave hero__wave--back" aria-hidden="true" />
-        <IconWave className="hero__wave hero__wave--front" aria-hidden="true" />
         <div className="container hero__inner">
           <span className="hero__badge">
             <IconFish className="hero__badge-icon" /> Official online tickets
