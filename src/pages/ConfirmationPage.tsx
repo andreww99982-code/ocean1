@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { fetchOrder } from "../api/localApi";
 import { Loader } from "../components/Loader";
+import { IconCheckCircle, IconMail, IconTicket } from "../components/icons";
 import type { Order } from "../types";
 
 export function ConfirmationPage() {
@@ -48,7 +49,9 @@ export function ConfirmationPage() {
 
   return (
     <div className="container page">
-      <h1>Thank you! Order confirmed 🎉</h1>
+      <h1>
+        <IconCheckCircle className="page__title-icon" /> Thank you! Order confirmed
+      </h1>
       <p>
         Order number: <strong>{order.id}</strong>
       </p>
@@ -56,10 +59,13 @@ export function ConfirmationPage() {
         Visit date and time: <strong>{order.date}</strong>, <strong>{order.time}</strong>
       </p>
       <p>
-        Tickets sent to email: <strong>{order.guest.email}</strong>. Please check your inbox (and spam folder).
+        <IconMail className="text-icon" /> Tickets sent to email: <strong>{order.guest.email}</strong>. Please check
+        your inbox (and spam folder).
       </p>
 
-      <h2>Your Tickets</h2>
+      <h2>
+        <IconTicket className="page__title-icon" /> Your Tickets
+      </h2>
       <ul className="ticket-codes">
         {order.tickets.map((t) => (
           <li key={t.code}>

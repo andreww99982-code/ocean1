@@ -14,14 +14,17 @@ export const VENUE = {
     {
       title: "Underwater Tunnel",
       text: "Walk under the aquarium with sharks and rays above your head.",
+      icon: "fish",
     },
     {
       title: "Four Oceans",
       text: "The Arctic, Atlantic, Pacific, and Indian oceans in one journey.",
+      icon: "wave",
     },
     {
       title: "For the Whole Family",
       text: "Interactive zones and audio guide for children and adults.",
+      icon: "users",
     },
   ],
 };

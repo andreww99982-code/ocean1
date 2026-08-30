@@ -1,6 +1,7 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useCart } from "../context/CartContext";
 import { CartSummary } from "../components/CartSummary";
+import { IconCart } from "../components/icons";
 
 export function CartPage() {
   const { cart, totalPrice, totalItems } = useCart();
@@ -8,7 +9,9 @@ export function CartPage() {
 
   return (
     <div className="container page">
-      <h1>Cart</h1>
+      <h1>
+        <IconCart className="page__title-icon" /> Cart
+      </h1>
       <CartSummary cart={cart} total={totalPrice} />
 
       <div className="page__footer-bar">

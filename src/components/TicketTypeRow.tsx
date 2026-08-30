@@ -1,4 +1,5 @@
 import type { TicketType } from "../types";
+import { IconTicket } from "./icons";
 
 interface TicketTypeRowProps {
   ticketType: TicketType;
@@ -10,8 +11,13 @@ export function TicketTypeRow({ ticketType, quantity, onChange }: TicketTypeRowP
   return (
     <div className="ticket-row">
       <div className="ticket-row__info">
-        <h3>{ticketType.name}</h3>
-        <p>{ticketType.description}</p>
+        <span className="ticket-row__icon" aria-hidden="true">
+          <IconTicket />
+        </span>
+        <div>
+          <h3>{ticketType.name}</h3>
+          <p>{ticketType.description}</p>
+        </div>
       </div>
       <div className="ticket-row__price">{ticketType.price} €</div>
       <div className="ticket-row__stepper">
