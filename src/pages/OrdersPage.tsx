@@ -2,6 +2,7 @@ import { useState, type FormEvent } from "react";
 import { Link } from "react-router-dom";
 import { fetchOrdersByEmail } from "../api/localApi";
 import { Loader } from "../components/Loader";
+import { IconSearch, IconTicket } from "../components/icons";
 import type { Order } from "../types";
 
 export function OrdersPage() {
@@ -23,7 +24,9 @@ export function OrdersPage() {
 
   return (
     <div className="container page">
-      <h1>My Orders</h1>
+      <h1>
+        <IconTicket className="page__title-icon" /> My Orders
+      </h1>
       <p>Enter the email address you used when booking to find your tickets.</p>
       <form className="form form--inline" onSubmit={onSubmit}>
         <label>
@@ -31,7 +34,7 @@ export function OrdersPage() {
           <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} autoComplete="email" />
         </label>
         <button type="submit" className="button button--primary" disabled={loading}>
-          Find
+          <IconSearch className="button__icon" /> Find
         </button>
       </form>
 

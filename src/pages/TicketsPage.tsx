@@ -4,6 +4,7 @@ import { Calendar } from "../components/Calendar";
 import { TimeSlotPicker } from "../components/TimeSlotPicker";
 import { TicketTypeRow } from "../components/TicketTypeRow";
 import { Loader } from "../components/Loader";
+import { IconCalendar, IconCart, IconTicket } from "../components/icons";
 import { TICKET_TYPES } from "../data/products";
 import { fetchAvailability } from "../api/localApi";
 import { useCart } from "../context/CartContext";
@@ -41,7 +42,9 @@ export function TicketsPage() {
 
   return (
     <div className="container page">
-      <h1>Select Date and Time</h1>
+      <h1>
+        <IconCalendar className="page__title-icon" /> Select Date and Time
+      </h1>
       <Calendar selectedDate={selectedDate} onSelect={setSelectedDate} />
 
       {loading && <Loader label="Loading available time slots…" />}
@@ -58,7 +61,9 @@ export function TicketsPage() {
         />
       )}
 
-      <h2>Select Tickets</h2>
+      <h2>
+        <IconTicket className="page__title-icon" /> Select Tickets
+      </h2>
       <div className="ticket-list">
         {TICKET_TYPES.map((type) => (
           <TicketTypeRow
@@ -80,7 +85,7 @@ export function TicketsPage() {
           disabled={!canContinue}
           onClick={() => navigate("/cart")}
         >
-          To Cart
+          <IconCart className="button__icon" /> To Cart
         </button>
       </div>
     </div>

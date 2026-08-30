@@ -1,5 +1,6 @@
 import { TICKET_TYPES } from "../data/products";
 import type { CartState } from "../types";
+import { IconCart } from "./icons";
 
 interface CartSummaryProps {
   cart: CartState;
@@ -8,11 +9,18 @@ interface CartSummaryProps {
 
 export function CartSummary({ cart, total }: CartSummaryProps) {
   if (cart.items.length === 0) {
-    return <p className="cart-summary__empty">Cart is empty.</p>;
+    return (
+      <p className="cart-summary__empty">
+        <IconCart /> Cart is empty.
+      </p>
+    );
   }
 
   return (
     <div className="cart-summary">
+      <h3 className="cart-summary__heading">
+        <IconCart /> Your Cart
+      </h3>
       {cart.date && cart.time && (
         <p className="cart-summary__visit">
           Visit date: <strong>{cart.date}</strong>, time: <strong>{cart.time}</strong>
