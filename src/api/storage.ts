@@ -1,6 +1,6 @@
 /**
- * Тонкая обёртка над localStorage. Все данные приложения (заказы, корзина)
- * хранятся только на устройстве пользователя — никаких сетевых запросов.
+ * Thin wrapper over localStorage. All app data (orders, cart)
+ * is stored only on the user's device — no network requests.
  */
 const PREFIX = "aquarium-tickets:";
 
@@ -18,6 +18,6 @@ export function writeJSON<T>(key: string, value: T): void {
   try {
     window.localStorage.setItem(PREFIX + key, JSON.stringify(value));
   } catch {
-    // Хранилище недоступно (приватный режим и т.п.) — тихо игнорируем.
+    // Storage is unavailable (private mode, etc.) — silently ignore.
   }
 }

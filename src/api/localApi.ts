@@ -3,17 +3,17 @@ import { TICKET_TYPES, getTicketType } from "../data/products";
 import { readJSON, writeJSON } from "./storage";
 
 /**
- * Полная локальная эмуляция бэкенда билетной кассы.
- * Никаких реальных сетевых запросов не выполняется — только localStorage
- * и небольшая, ГАРАНТИРОВАННО ограниченная по времени имитация задержки сети,
- * чтобы UI не "зависал" в бесконечной загрузке.
+ * Complete local backend emulation for the ticket booth.
+ * No real network requests are made — only localStorage
+ * and a small, GUARANTEED time-limited network delay emulation,
+ * so the UI doesn't "hang" in infinite loading.
  */
 
 const SLOT_TIMES = ["10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00"];
 const SLOT_CAPACITY = 40;
 const MAX_DELAY_MS = 500;
 
-/** Имитирует сетевой вызов с небольшой случайной задержкой (не более MAX_DELAY_MS). */
+/** Emulates a network call with a small random delay (no more than MAX_DELAY_MS). */
 function withDelay<T>(value: T): Promise<T> {
   const delay = 150 + Math.random() * (MAX_DELAY_MS - 150);
   return new Promise((resolve) => {
@@ -29,7 +29,7 @@ function hashString(input: string): number {
   return hash;
 }
 
-/** Число "уже забронированных другими посетителями" мест — детерминированное, для реалистичности. */
+/** Number of "seats already booked by other visitors" — deterministic, for realism. */
 function baselineBooked(dateISO: string, time: string): number {
   return hashString(`${dateISO}|${time}`) % Math.floor(SLOT_CAPACITY * 0.6);
 }
