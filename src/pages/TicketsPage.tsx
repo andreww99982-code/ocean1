@@ -46,7 +46,11 @@ export function TicketsPage() {
 
       {loading && <Loader label="Загружаем доступные сеансы…" />}
 
-      {!loading && availability && (
+      {!loading && availability && availability.closed && (
+        <p className="form__hint">В этот день океанариум закрыт. Выберите другую дату.</p>
+      )}
+
+      {!loading && availability && !availability.closed && (
         <TimeSlotPicker
           slots={availability.slots}
           selectedTime={cart.date === selectedDate ? cart.time : null}
@@ -54,7 +58,7 @@ export function TicketsPage() {
         />
       )}
 
-      <h1>Выберите билеты</h1>
+      <h2>Выберите билеты</h2>
       <div className="ticket-list">
         {TICKET_TYPES.map((type) => (
           <TicketTypeRow
