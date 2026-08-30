@@ -16,13 +16,13 @@ export function Header() {
         </NavLink>
         <nav className="site-header__nav">
           <NavLink to="/tickets" className={({ isActive }) => (isActive ? "active" : "")}>
-            Билеты
+            Tickets
           </NavLink>
           <NavLink to="/orders" className={({ isActive }) => (isActive ? "active" : "")}>
-            Мои заказы
+            My Orders
           </NavLink>
           <NavLink to="/cart" className={({ isActive }) => (isActive ? "active" : "")}>
-            Корзина
+            Cart
             {totalItems > 0 && <span className="badge">{totalItems}</span>}
           </NavLink>
         </nav>

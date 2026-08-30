@@ -8,12 +8,12 @@ export function CartPage() {
 
   return (
     <div className="container page">
-      <h1>Корзина</h1>
+      <h1>Cart</h1>
       <CartSummary cart={cart} total={totalPrice} />
 
       <div className="page__footer-bar">
         <Link to="/tickets" className="button button--secondary">
-          Изменить билеты
+          Change Tickets
         </Link>
         <button
           type="button"
@@ -21,7 +21,7 @@ export function CartPage() {
           disabled={totalItems === 0 || !cart.time}
           onClick={() => navigate("/checkout")}
         >
-          Оформить заказ
+          Place Order
         </button>
       </div>
     </div>

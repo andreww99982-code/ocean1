@@ -2,9 +2,9 @@ interface LoaderProps {
   label?: string;
 }
 
-/** Индикатор загрузки. Используется только вокруг заведомо ограниченных по времени
- * локальных операций (см. MAX_DELAY_MS в src/api/localApi.ts) — зависнуть не может. */
-export function Loader({ label = "Загрузка…" }: LoaderProps) {
+/** Loading indicator. Used only around operations that are strictly time-limited
+ * locally (see MAX_DELAY_MS in src/api/localApi.ts) — cannot hang. */
+export function Loader({ label = "Loading…" }: LoaderProps) {
   return (
     <div className="loader" role="status" aria-live="polite">
       <span className="loader__spinner" aria-hidden="true" />

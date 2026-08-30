@@ -3,30 +3,30 @@ import type { TicketType } from "../types";
 export const TICKET_TYPES: TicketType[] = [
   {
     id: "adult",
-    name: "Взрослый билет",
-    description: "Для посетителей от 13 лет и старше.",
+    name: "Adult Ticket",
+    description: "For visitors 13 years and older.",
     price: 22,
     minAge: 13,
   },
   {
     id: "child",
-    name: "Детский билет",
-    description: "Для детей от 4 до 12 лет включительно.",
+    name: "Child Ticket",
+    description: "For children ages 4 to 12 inclusive.",
     price: 14,
     minAge: 4,
     maxAge: 12,
   },
   {
     id: "senior",
-    name: "Билет для пенсионеров",
-    description: "Для посетителей от 65 лет.",
+    name: "Senior Ticket",
+    description: "For visitors 65 years and older.",
     price: 16,
     minAge: 65,
   },
   {
     id: "family",
-    name: "Семейный билет",
-    description: "2 взрослых + 2 детей — выгоднее, чем по отдельности.",
+    name: "Family Ticket",
+    description: "2 adults + 2 children — better value than individual tickets.",
     price: 58,
   },
 ];

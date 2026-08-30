@@ -10,8 +10,8 @@ function toISODate(d: Date): string {
   return d.toISOString().slice(0, 10);
 }
 
-const WEEKDAY_FORMAT = new Intl.DateTimeFormat("ru-RU", { weekday: "short" });
-const DAY_FORMAT = new Intl.DateTimeFormat("ru-RU", { day: "numeric", month: "short" });
+const WEEKDAY_FORMAT = new Intl.DateTimeFormat("en-US", { weekday: "short" });
+const DAY_FORMAT = new Intl.DateTimeFormat("en-US", { day: "numeric", month: "short" });
 
 export function Calendar({ selectedDate, onSelect, daysAhead = 21 }: CalendarProps) {
   const days = useMemo(() => {
@@ -25,7 +25,7 @@ export function Calendar({ selectedDate, onSelect, daysAhead = 21 }: CalendarPro
   }, [daysAhead]);
 
   return (
-    <div className="calendar" role="listbox" aria-label="Выберите дату посещения">
+    <div className="calendar" role="listbox" aria-label="Select a visit date">
       {days.map((d) => {
         const iso = toISODate(d);
         const isSelected = iso === selectedDate;

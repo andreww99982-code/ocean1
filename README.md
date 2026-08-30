@@ -1,30 +1,29 @@
-# Билетная касса «Океанариум Атлантика» (локальная демо-версия)
+# Atlantic Aquarium Ticket Booth (Local Demo Version)
 
-Полностью локальное одностраничное приложение (SPA) для покупки билетов в океанариум.
-Никакого реального бэкенда, авторизации или платёжного шлюза — все данные (корзина,
-заказы) хранятся в `localStorage` браузера, а "сеть" эмулируется с ограниченной по
-времени задержкой (см. `src/api/localApi.ts`), поэтому загрузка никогда не "зависает".
+A completely local single-page application (SPA) for buying aquarium tickets.
+No real backend, authentication, or payment gateway — all data (cart, orders) is stored in the browser's `localStorage`, 
+and the "network" is emulated with a limited time delay (see `src/api/localApi.ts`), so loading never "hangs".
 
-## Возможности
+## Features
 
-- Выбор даты и времени посещения (календарь на 3 недели вперёд, доступность слотов)
-- Каталог билетов (взрослый, детский, пенсионный, семейный) с изменяемым количеством
-- Корзина
-- Оформление заказа (гостевая форма контактных данных, без пароля/аккаунта)
-- Эмулированная оплата (без реального платёжного шлюза)
-- Страница подтверждения заказа с кодами билетов
-- Поиск своих прошлых заказов по email (локально, в пределах этого браузера)
+- Select visit date and time (3-week calendar, real-time slot availability)
+- Ticket catalog (adult, child, senior, family) with adjustable quantities
+- Shopping cart
+- Order checkout (guest contact form, no password/account needed)
+- Emulated payment (no real payment gateway)
+- Order confirmation page with ticket codes
+- Search past orders by email (local, within this browser only)
 
-## Запуск
+## Running
 
 ```bash
 npm install
-npm run dev       # локальный сервер разработки
-npm run build      # production-сборка в dist/
-npm run preview   # предпросмотр production-сборки
+npm run dev       # local development server
+npm run build      # production build to dist/
+npm run preview   # preview of production build
 ```
 
-## Стек
+## Stack
 
-Vite + React + TypeScript, react-router-dom для навигации. Без внешних UI-библиотек —
-собственные стили в `src/styles/global.css`.
+Vite + React + TypeScript, react-router-dom for routing. No external UI libraries — 
+custom styles in `src/styles/global.css`.

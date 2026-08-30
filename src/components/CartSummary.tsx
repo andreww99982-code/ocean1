@@ -8,14 +8,14 @@ interface CartSummaryProps {
 
 export function CartSummary({ cart, total }: CartSummaryProps) {
   if (cart.items.length === 0) {
-    return <p className="cart-summary__empty">Корзина пуста.</p>;
+    return <p className="cart-summary__empty">Cart is empty.</p>;
   }
 
   return (
     <div className="cart-summary">
       {cart.date && cart.time && (
         <p className="cart-summary__visit">
-          Дата посещения: <strong>{cart.date}</strong>, время: <strong>{cart.time}</strong>
+          Visit date: <strong>{cart.date}</strong>, time: <strong>{cart.time}</strong>
         </p>
       )}
       <ul className="cart-summary__list">
@@ -33,7 +33,7 @@ export function CartSummary({ cart, total }: CartSummaryProps) {
         })}
       </ul>
       <div className="cart-summary__total">
-        <span>Итого</span>
+        <span>Total</span>
         <strong>{total} €</strong>
       </div>
     </div>

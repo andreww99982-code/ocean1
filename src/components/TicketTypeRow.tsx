@@ -17,7 +17,7 @@ export function TicketTypeRow({ ticketType, quantity, onChange }: TicketTypeRowP
       <div className="ticket-row__stepper">
         <button
           type="button"
-          aria-label={`Уменьшить количество: ${ticketType.name}`}
+          aria-label={`Decrease quantity: ${ticketType.name}`}
           onClick={() => onChange(Math.max(0, quantity - 1))}
           disabled={quantity <= 0}
         >
@@ -26,7 +26,7 @@ export function TicketTypeRow({ ticketType, quantity, onChange }: TicketTypeRowP
         <span aria-live="polite">{quantity}</span>
         <button
           type="button"
-          aria-label={`Увеличить количество: ${ticketType.name}`}
+          aria-label={`Increase quantity: ${ticketType.name}`}
           onClick={() => onChange(Math.min(20, quantity + 1))}
         >
           +

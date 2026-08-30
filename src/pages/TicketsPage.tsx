@@ -41,13 +41,13 @@ export function TicketsPage() {
 
   return (
     <div className="container page">
-      <h1>Выберите дату и время</h1>
+      <h1>Select Date and Time</h1>
       <Calendar selectedDate={selectedDate} onSelect={setSelectedDate} />
 
-      {loading && <Loader label="Загружаем доступные сеансы…" />}
+      {loading && <Loader label="Loading available time slots…" />}
 
       {!loading && availability && availability.closed && (
-        <p className="form__hint">В этот день океанариум закрыт. Выберите другую дату.</p>
+        <p className="form__hint">The aquarium is closed on this day. Please select another date.</p>
       )}
 
       {!loading && availability && !availability.closed && (
@@ -58,7 +58,7 @@ export function TicketsPage() {
         />
       )}
 
-      <h2>Выберите билеты</h2>
+      <h2>Select Tickets</h2>
       <div className="ticket-list">
         {TICKET_TYPES.map((type) => (
           <TicketTypeRow
@@ -72,7 +72,7 @@ export function TicketsPage() {
 
       <div className="page__footer-bar">
         <span>
-          {totalItems} билет(ов) — <strong>{totalPrice} €</strong>
+          {totalItems} ticket(s) — <strong>{totalPrice} €</strong>
         </span>
         <button
           type="button"
@@ -80,7 +80,7 @@ export function TicketsPage() {
           disabled={!canContinue}
           onClick={() => navigate("/cart")}
         >
-          В корзину
+          To Cart
         </button>
       </div>
     </div>

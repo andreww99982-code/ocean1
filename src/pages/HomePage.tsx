@@ -10,7 +10,7 @@ export function HomePage() {
           <p className="hero__tagline">{VENUE.tagline}</p>
           <p className="hero__description">{VENUE.description}</p>
           <Link to="/tickets" className="button button--primary">
-            Купить билеты
+            Buy Tickets
           </Link>
         </div>
       </section>
@@ -26,11 +26,11 @@ export function HomePage() {
 
       <section className="container info-block">
         <div>
-          <h2>Часы работы</h2>
+          <h2>Opening Hours</h2>
           <p>{VENUE.openingHours}</p>
         </div>
         <div>
-          <h2>Адрес</h2>
+          <h2>Address</h2>
           <p>{VENUE.address}</p>
         </div>
       </section>

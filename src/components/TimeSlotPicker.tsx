@@ -8,7 +8,7 @@ interface TimeSlotPickerProps {
 
 export function TimeSlotPicker({ slots, selectedTime, onSelect }: TimeSlotPickerProps) {
   return (
-    <div className="time-slots" role="listbox" aria-label="Выберите время посещения">
+    <div className="time-slots" role="listbox" aria-label="Select a visit time">
       {slots.map((slot) => {
         const free = slot.capacity - slot.booked;
         const soldOut = free <= 0;
@@ -27,7 +27,7 @@ export function TimeSlotPicker({ slots, selectedTime, onSelect }: TimeSlotPicker
           >
             <span className="time-slot__time">{slot.time}</span>
             <span className="time-slot__status">
-              {soldOut ? "нет мест" : low ? `осталось ${free}` : "есть места"}
+              {soldOut ? "no seats" : low ? `${free} left` : "seats available"}
             </span>
           </button>
         );

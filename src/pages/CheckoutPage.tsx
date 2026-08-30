@@ -21,18 +21,18 @@ export function CheckoutPage() {
   if (cart.items.length === 0 || !cart.date || !cart.time) {
     return (
       <div className="container page">
-        <h1>Оформление заказа</h1>
-        <p>Ваша корзина пуста. Сначала выберите билеты.</p>
+        <h1>Checkout</h1>
+        <p>Your cart is empty. Please select tickets first.</p>
       </div>
     );
   }
 
   const validate = (): boolean => {
     const next: Record<string, string> = {};
-    if (!fullName.trim()) next.fullName = "Укажите имя и фамилию";
-    if (!EMAIL_RE.test(email.trim())) next.email = "Укажите корректный email";
-    if (!phone.trim()) next.phone = "Укажите телефон";
-    if (cardNumber.replace(/\s/g, "").length < 12) next.cardNumber = "Введите номер карты (демо, не проверяется)";
+    if (!fullName.trim()) next.fullName = "Please enter your full name";
+    if (!EMAIL_RE.test(email.trim())) next.email = "Please enter a valid email";
+    if (!phone.trim()) next.phone = "Please enter a phone number";
+    if (cardNumber.replace(/\s/g, "").length < 12) next.cardNumber = "Please enter a card number (demo, not validated)";
     setErrors(next);
     return Object.keys(next).length === 0;
   };
@@ -58,12 +58,12 @@ export function CheckoutPage() {
   return (
     <div className="container page page--split">
       <div>
-        <h1>Оформление заказа</h1>
+        <h1>Checkout</h1>
         <form className="form" onSubmit={onSubmit} noValidate>
           <fieldset>
-            <legend>Контактные данные</legend>
+            <legend>Contact Information</legend>
             <label>
-              Имя и фамилия
+              Full Name
               <input value={fullName} onChange={(e) => setFullName(e.target.value)} autoComplete="name" />
               {errors.fullName && <span className="form__error">{errors.fullName}</span>}
             </label>
@@ -78,19 +78,19 @@ export function CheckoutPage() {
               {errors.email && <span className="form__error">{errors.email}</span>}
             </label>
             <label>
-              Телефон
+              Phone
               <input value={phone} onChange={(e) => setPhone(e.target.value)} autoComplete="tel" />
               {errors.phone && <span className="form__error">{errors.phone}</span>}
             </label>
           </fieldset>
 
           <fieldset>
-            <legend>Оплата (демо)</legend>
+            <legend>Payment (Demo)</legend>
             <p className="form__hint">
-              Это локальная демо-касса — реальные платежи не выполняются, данные карты никуда не отправляются.
+              This is a local demo checkout — no real payments are processed, and card data is not sent anywhere.
             </p>
             <label>
-              Номер карты
+              Card Number
               <input
                 value={cardNumber}
                 onChange={(e) => setCardNumber(e.target.value)}
@@ -102,14 +102,14 @@ export function CheckoutPage() {
           </fieldset>
 
           <button type="submit" className="button button--primary" disabled={submitting}>
-            {submitting ? "Оформляем…" : `Оплатить ${totalPrice} €`}
+            {submitting ? "Processing…" : `Pay ${totalPrice} €`}
           </button>
-          {submitting && <Loader label="Обрабатываем заказ…" />}
+          {submitting && <Loader label="Processing order…" />}
         </form>
       </div>
 
       <aside>
-        <h2>Ваш заказ</h2>
+        <h2>Your Order</h2>
         <CartSummary cart={cart} total={totalPrice} />
       </aside>
     </div>

@@ -10,8 +10,8 @@ export function Footer() {
           <p>{VENUE.openingHours}</p>
         </div>
         <p className="site-footer__note">
-          Демо-касса работает полностью локально в вашем браузере: без сервера, без реальной оплаты и без
-          передачи данных куда-либо. Все заказы хранятся только на этом устройстве.
+          This demo checkout runs completely locally in your browser: no server, no real payments, and no data
+          transmission. All orders are stored only on this device.
         </p>
       </div>
     </footer>

@@ -29,7 +29,7 @@ export function ConfirmationPage() {
   if (loading) {
     return (
       <div className="container page">
-        <Loader label="Загружаем заказ…" />
+        <Loader label="Loading order…" />
       </div>
     );
   }
@@ -37,10 +37,10 @@ export function ConfirmationPage() {
   if (!order) {
     return (
       <div className="container page">
-        <h1>Заказ не найден</h1>
-        <p>Возможно, вы открыли эту ссылку на другом устройстве или очистили данные браузера.</p>
+        <h1>Order Not Found</h1>
+        <p>You may have opened this link on a different device or cleared your browser data.</p>
         <Link to="/tickets" className="button button--primary">
-          Купить билеты
+          Buy Tickets
         </Link>
       </div>
     );
@@ -48,19 +48,18 @@ export function ConfirmationPage() {
 
   return (
     <div className="container page">
-      <h1>Спасибо! Заказ подтверждён 🎉</h1>
+      <h1>Thank you! Order confirmed 🎉</h1>
       <p>
-        Номер заказа: <strong>{order.id}</strong>
+        Order number: <strong>{order.id}</strong>
       </p>
       <p>
-        Дата и время посещения: <strong>{order.date}</strong>, <strong>{order.time}</strong>
+        Visit date and time: <strong>{order.date}</strong>, <strong>{order.time}</strong>
       </p>
       <p>
-        Билеты отправлены на email: <strong>{order.guest.email}</strong> (эмуляция — письмо не отправляется в
-        действительности).
+        Tickets sent to email: <strong>{order.guest.email}</strong> (demo — email is not actually sent).
       </p>
 
-      <h2>Ваши билеты</h2>
+      <h2>Your Tickets</h2>
       <ul className="ticket-codes">
         {order.tickets.map((t) => (
           <li key={t.code}>
@@ -71,11 +70,11 @@ export function ConfirmationPage() {
       </ul>
 
       <p className="page__total">
-        Итого оплачено: <strong>{order.total} €</strong>
+        Total paid: <strong>{order.total} €</strong>
       </p>
 
       <Link to="/" className="button button--secondary">
-        На главную
+        Back to Home
       </Link>
     </div>
   );

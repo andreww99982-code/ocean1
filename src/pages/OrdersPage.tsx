@@ -23,28 +23,28 @@ export function OrdersPage() {
 
   return (
     <div className="container page">
-      <h1>Мои заказы</h1>
-      <p>Введите email, указанный при заказе, чтобы увидеть свои билеты (данные хранятся только в этом браузере).</p>
+      <h1>My Orders</h1>
+      <p>Enter the email from your order to see your tickets (data is stored only in this browser).</p>
       <form className="form form--inline" onSubmit={onSubmit}>
         <label>
           Email
           <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} autoComplete="email" />
         </label>
         <button type="submit" className="button button--primary" disabled={loading}>
-          Найти
+          Find
         </button>
       </form>
 
-      {loading && <Loader label="Ищем заказы…" />}
+      {loading && <Loader label="Searching for orders…" />}
 
-      {!loading && orders && orders.length === 0 && <p>Заказов с таким email не найдено.</p>}
+      {!loading && orders && orders.length === 0 && <p>No orders found with this email.</p>}
 
       {!loading && orders && orders.length > 0 && (
         <ul className="order-list">
           {orders.map((o) => (
             <li key={o.id}>
               <Link to={`/confirmation/${o.id}`}>
-                Заказ {o.id} — {o.date} {o.time} — {o.total} €
+                Order {o.id} — {o.date} {o.time} — {o.total} €
               </Link>
             </li>
           ))}
