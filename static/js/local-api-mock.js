@@ -143,7 +143,12 @@
   // for more than a couple of seconds.
   var OVERLAY_SELECTOR = ".overlay-noClorian, .overlay";
   var OVERLAY_GRACE_PERIOD_MS = 3000;
-  var firstSeenAt = new Map();
+  // Stop watching after this long: by then the page has either settled or
+  // there is nothing more this watchdog can usefully do.
+  var OVERLAY_WATCH_TIMEOUT_MS = 60000;
+  // WeakMap so entries for elements removed from the DOM can be garbage
+  // collected instead of being retained forever.
+  var firstSeenAt = new WeakMap();
 
   function sweepOverlays() {
     var now = Date.now();
@@ -166,7 +171,11 @@
     }
   }
 
-  window.setInterval(sweepOverlays, 500);
+  var overlayWatchIntervalId = window.setInterval(sweepOverlays, 500);
+  window.setTimeout(function () {
+    window.clearInterval(overlayWatchIntervalId);
+  }, OVERLAY_WATCH_TIMEOUT_MS);
+
   if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", sweepOverlays);
   } else {
